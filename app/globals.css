@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #08080b;
+  color: #b8b8c8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* SVG-style grid pattern background (radnaabazar uses /grid.svg). */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(124, 108, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(124, 108, 255, 0.06) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+/* Dot-grid variant for section backdrops. */
+.dot-bg {
+  background-image: radial-gradient(rgba(124, 108, 255, 0.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Fade the grid toward the edges so it reads as a lit panel, not wallpaper. */
+.grid-mask {
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 40%, transparent 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(110deg, #a78bfa 0%, #22d3ee 50%, #a78bfa 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Card lift + accent border on hover. */
+.card {
+  background-color: #13131d;
+  border: 1px solid #20202e;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(124, 108, 255, 0.45);
+  box-shadow: 0 16px 50px -16px rgba(124, 108, 255, 0.28);
+}
+
+/* Gradient-ring wrapper used around the profile image / feature panels. */
+.ring-grad {
+  position: relative;
+}
+.ring-grad::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(140deg, rgba(124, 108, 255, 0.6), rgba(34, 211, 238, 0.35), transparent 70%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Scroll-reveal (toggled by Reveal.tsx IntersectionObserver). */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Marquee row fade edges. */
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+::selection {
+  background: rgba(124, 108, 255, 0.35);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #08080b;
+}
+::-webkit-scrollbar-thumb {
+  background: #20202e;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2c2c40;
+}
